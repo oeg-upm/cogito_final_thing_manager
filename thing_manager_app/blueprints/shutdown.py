@@ -1,5 +1,7 @@
 from flask import Blueprint, request, render_template
 import os
+import sys
+sys.stdout.flush()
 
 shutdown = Blueprint('shutdown', __name__)
 

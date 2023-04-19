@@ -32,7 +32,7 @@ class Creation_Handling_Service:
             if self.is_valid_uuid(id):
                 print(str(self.json_metadata))
                 # call mapping with ?json_metadata, ?rdf_mapping, ?shape_uri, ?thing_description_mapping, ?project_id
-                url = "http://localhost:4567/api/project_controller/data?rdf_mapping=" + self.rdf_mapping + "&json_metadata=" + str(self.json_metadata) + "&shape_uri=" + self.shape_uri + "&thing_description_mapping=" + self.thing_description_mapping + "&project_id=" + self.project_id
+                url = self.helio_host + "api/project_controller/data?rdf_mapping=" + self.rdf_mapping + "&json_metadata=" + str(self.json_metadata) + "&shape_uri=" + self.shape_uri + "&thing_description_mapping=" + self.thing_description_mapping + "&project_id=" + self.project_id
                 payload={}
                 headers = {}
 

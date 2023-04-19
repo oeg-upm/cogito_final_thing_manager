@@ -1,0 +1,9 @@
+version: '3'
+services:
+  thing_manager:
+    image: salva5297/thing_manager:0.1.0
+    environment:
+      - FLASK_ENV=development
+    env_file: ./variables.env
+    ports:
+      - "8080:8080"

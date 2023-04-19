@@ -1,5 +1,7 @@
 import requests
 import json
+import sys
+sys.stdout.flush()
 
 class Helio_Controller:
     def __init__(self, project_id, file_id, ttl, helio_host, rdf=None):

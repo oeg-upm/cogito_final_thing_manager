@@ -1,5 +1,6 @@
 from flask import Flask
-
+import sys
+sys.stdout.flush()
 
 def create_app():
     app = Flask(__name__)

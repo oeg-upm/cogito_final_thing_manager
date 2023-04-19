@@ -1,5 +1,7 @@
 import requests
 import json
+import sys
+sys.stdout.flush()
 
 class WoT_Hive_Controller():
     def __init__(self, wot_hive_url):

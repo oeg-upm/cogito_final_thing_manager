@@ -8,6 +8,8 @@ from ..model.Mappings_Model import Mappings_Model
 import os
 import json
 from ..model.File_Model import File_Model
+import sys
+sys.stdout.flush()
 
 # GET ENVIROMENT VARIABLES CONFIGURATION
 ts_host = os.environ.get('TS_HOST')

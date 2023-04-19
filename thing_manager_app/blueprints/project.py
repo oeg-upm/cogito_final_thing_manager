@@ -3,7 +3,8 @@ from ..service.Deletion_Handling_Service import Deletion_Handling_Service
 from ..service.Creation_Handling_Service import Creation_Handling_Service
 from ..controller.WoT_Hive_Controller import WoT_Hive_Controller
 import os
-
+import sys
+sys.stdout.flush()
 
 # GET ENVIROMENT VARIABLES CONFIGURATION
 ts_host = os.environ.get('TS_HOST')
