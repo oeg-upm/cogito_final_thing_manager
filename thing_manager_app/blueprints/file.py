@@ -37,7 +37,8 @@ def add_file_to_project(id):
         file_json = json.loads(file_json)
         # create file model
         if "file_id" in file_json:
-            file_model = File_Model(file_json["file_url"], file_json["file_type"], file_json["file_id"])
+            file_url = "https://dtp.cogito-project.com/file/" + file_json["file_id"] + "/download"
+            file_model = File_Model(file_url, file_json["file_type"], file_json["file_id"])
             # analyse if file_id is correct
             if not file_model.get_file_id():
                 return "Error file_id is not a valid UUID", 400
@@ -45,7 +46,7 @@ def add_file_to_project(id):
             if response.status_code != 200:
                 return "Not able to download file", 400
             file_data = response.text
-        else:
+        elif "file_url" in file_json:
             file_model = File_Model(file_json["file_url"], file_json["file_type"])
             # create file_id
             file_model.get_file_id()
@@ -53,6 +54,8 @@ def add_file_to_project(id):
             if response.status_code != 200:
                 return "Not able to download file", 400
             file_data = response.text
+        else:
+            return "Error, file_id or file_url not found", 400
 
         if file_model.file_type == "xml_schedule":
             # preprocess
@@ -176,8 +179,14 @@ def add_ttl_to_project(id, file_type, file_id):
         project_td = json.loads(response.text)
         if response.status_code != 200:
             return "Project not found", 404
+        # create project info triple
+        project_info_triple = '''\n
+        project:''' + id + '''
+            a   facility:Project ;
+            platform:hasFileURL "https://dtp.cogito-project.com/file/''' + file_id + '''/download"  .
+        '''
         # get ttl file
-        ttl = request.data.decode('utf-8')
+        ttl = request.data.decode('utf-8') + project_info_triple
         # create helio controller
         helio_controller = Helio_Controller(id, file_id, ttl, helio_host, rdf=True)
         # create helio task

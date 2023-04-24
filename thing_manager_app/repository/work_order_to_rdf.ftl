@@ -82,5 +82,10 @@ worker:[=hi]
     resource:lastName "[=real_json.human_instances[hi].last_name]" .
     
 </#list>
+
+project:[=project_id]
+    a   facility:Project ;
+    platform:hasFileURL "[=file_url]" .
+
 </#assign>
 [=rdf]
