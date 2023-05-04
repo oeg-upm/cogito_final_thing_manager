@@ -181,6 +181,10 @@ def add_ttl_to_project(id, file_type, file_id):
             return "Project not found", 404
         # create project info triple
         project_info_triple = '''\n
+        @prefix project: <http://data.cogito.iot.linkeddata.es/resources/project/> .
+        @prefix facility: <https://cogito.iot.linkeddata.es/def/facility#> .
+        @prefix platform: <https://cogito.iot.linkeddata.es/def/platform#> .
+        
         project:''' + id + '''
             a   facility:Project ;
             platform:hasFileURL "https://dtp.cogito-project.com/file/''' + file_id + '''/download"  .
